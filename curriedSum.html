@@ -1,0 +1,43 @@
+<html>
+<head>
+<script src="curriedSum.js"></script>
+</head>
+<body>
+<script language="JavaScript">
+
+var mySum = function () {
+	var args = Array.prototype.slice.apply(arguments);
+	var total = 0;
+	for (var i = 0; i < args.length; i++) {
+		total +=args[i];
+	}
+	return total;
+};
+
+document.write( "mySum(1,2)= " );
+document.write( mySum(1,2) );
+
+document.write( "<br><br>" );
+document.write( "curriedSum(4)(5)(30)(20)(1)= " );
+var sum = curriedSum(4); //want to sum 4 items
+document.write( sum(5)(30)(20)(1) ); // => 56
+
+
+//2 tests for when write Function.curry
+document.write( "<br><br>" );
+document.write( mySum.curry(2)(1)(2) );
+
+
+//make curriedSum using mySum and .curry
+document.write( "<br><br>" );
+var curriedSumFromCurry = function (x) {
+	return mySum.curry(x);
+}
+var sum = curriedSumFromCurry(4); //want to sum 4 items
+document.write( sum(5)(30)(20)(1) ); // => 56
+
+
+
+</script>
+</body>
+</html>

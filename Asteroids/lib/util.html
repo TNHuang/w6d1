@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<script src="Util.js"></script>
+	</head>
+<body>
+<script>
+
+document.write("<br><br>");
+function Animal(name){
+	this.name = name;
+};
+
+Animal.prototype.breath = function () {
+	document.write(this.name +" huff puff!");
+};
+
+function Cat(name) {
+	Animal.call(this, name);
+};
+var inherits = Asteroids.Util.inherits;
+Cat.inherits(Animal);
+
+Cat.prototype.meow = function () {
+	document.write("Meow!");
+}
+
+var milo = new Cat("milo");
+milo.breath();      //Cat should be able to breath
+document.write("<br><br>");
+milo.meow();
+
+document.write("<br><br>");
+var tom = new Animal("tom");
+tom.breath();
+
+</script>
+</body>
+</html>

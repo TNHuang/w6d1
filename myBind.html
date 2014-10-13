@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<script src="myBind.js"></script>
+	</head>
+<body>
+<script language="JavaScript">
+document.write("testing myBind");
+document.write("<br>");
+
+var Cat = function(name, color){
+	this.name = name;
+	this.color = color;
+}
+Cat.prototype.sayHello = function(){
+	document.write(this.name + " say hi")
+}
+var a = new Cat("milo", "yellow");
+var b = new Cat("Garfield", "tabby");
+a.sayHello.bind(b)();
+
+//now we want to pass arguments
+document.write("<br>");
+Cat.prototype.sayHelloTimes = function (x, y){
+	for (var i = 0; i < x*y; i++) {
+		this.sayHello();
+	};
+}
+a.sayHelloTimes.myBind(b)(2,2);
+
+//want to make a text that passing bind arguments
+document.write("<br>");
+Cat.prototype.sayArguments = function (){
+	for (var i = 0; i < arguments.length; i++) {
+		document.write(arguments[i]);
+	}
+}
+
+
+a.sayArguments.myBind(b, 2)(3,5);
+
+
+
+</script>
+</body>
+</html>

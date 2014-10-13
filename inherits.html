@@ -1,0 +1,69 @@
+<html>
+	<head>
+		<script src="inherits.js"></script>
+	</head>
+
+<body>
+<script language="JavaScript">
+
+//manual inheriting
+function Animal(name){
+	this.name = name;
+};
+Animal.prototype.breath = function () {
+	document.write(this.name +" huff puff!");
+};
+function Cat (name) {
+	Animal.call(this,name);
+};
+function Surrogate() {};
+Surrogate.prototype = Animal.prototype;
+Cat.prototype = new Surrogate();
+Cat.prototype.meow = function () {
+	document.write("Meow!");
+}
+
+var milo = new Cat("milo");
+milo.breath();      //Cat should be able to breath
+document.write("<br><br>");
+milo.meow();
+
+document.write("<br><br>");
+var tom = new Animal("tom");
+tom.breath();
+//document.write("<br><br>");
+//tom.meow();     //standard animal should not meow
+
+//now using inherits
+document.write("<br><br>");
+function Animal(name){
+	this.name = name;
+};
+
+Animal.prototype.breath = function () {
+	document.write(this.name +" huff puff!");
+};
+
+function Cat(name) {
+	Animal.call(this, name);
+};
+Cat.inherits(Animal);
+
+Cat.prototype.meow = function () {
+	document.write("Meow!");
+}
+
+var milo = new Cat("milo");
+milo.breath();      //Cat should be able to breath
+document.write("<br><br>");
+milo.meow();
+
+document.write("<br><br>");
+var tom = new Animal("tom");
+tom.breath();
+
+
+
+</script>
+</body>
+</html>
